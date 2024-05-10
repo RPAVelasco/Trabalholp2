@@ -9,14 +9,22 @@ import android.os.Looper
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Define o layout da atividade de splash.
         setContentView(R.layout.activity_splash)
 
+        // Cria um objeto Handler para lidar com o atraso na execução da próxima atividade.
         Handler(Looper.getMainLooper()).postDelayed({
+            // Obtém a Intent que iniciou esta atividade.
             val i = intent
-            val j = Intent(this,PedidoActivity::class.java)
+            // Cria uma nova Intent para iniciar a atividade de pedido (PedidoActivity).
+            val j = Intent(this, PedidoActivity::class.java)
+            // Passa todos os extras da Intent atual para a nova Intent.
             j.putExtras(i)
+            // Inicia a atividade de pedido.
             startActivity(j)
-        },2000)
-
+            // Finaliza a atividade de splash para que o usuário não possa retornar pressionando o botão "Voltar".
+            finish()
+        }, 2000) // Define o atraso em milissegundos (neste caso, 2000ms ou 2 segundos).
     }
 }
